@@ -1,26 +1,22 @@
 from windows import Window, Point, Line
+from cell import Cell
+from maze import Maze
+import logging
 
 def main():
-    a = Point(4, 6)
-    b = Point(80, 50)
-    c = Point(100, 500)
-    d = Point(600, 300)
-    ab = Line(a,b)
-    ac = Line(a,c)
-    ad = Line(a,d)
-    bc = Line(b,c)
-    bd = Line(b,d)
-    cd = Line(c,d)
+    num_rows = 12
+    num_cols = 16
+    margin = 50
+    screen_x = 800
+    screen_y = 600
+    cell_size_x = (screen_x - 2 * margin) / num_cols
+    cell_size_y = (screen_y - 2 * margin) / num_rows
+    win = Window(screen_x, screen_y)
 
-
-    win = Window(800, 600)
-    win.draw_line(ab, "black")
-    win.draw_line(ac, "black")
-    win.draw_line(ad, "green")
-    win.draw_line(bd, "yellow")
-    win.draw_line(cd, "red")
+    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win)
 
     win.wait_for_close()
+
 
 if __name__ == "__main__":
     main()
